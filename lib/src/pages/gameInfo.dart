@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gamezone/src/model/Agumentos.dart';
-import 'package:gamezone/src/model/datosApi.dart';
-import 'package:gamezone/src/model/infoJuego.dart';
+import 'package:gamezone/src/service/datosApi.dart';
 
 class gameInfo extends StatefulWidget {
   gameInfo({Key? key}) : super(key: key);
@@ -17,14 +16,8 @@ class _gameInfoState extends State<gameInfo> {
   Widget build(BuildContext context) {
     final argumentos =
         ModalRoute.of(context)!.settings.arguments as ArgInfoGame;
-    //final Map argu = ModalRoute.of<Map>(context)!.settings.arguments;
-
     print('recibiendo Argumentos');
     print(argumentos.id);
-    //String arg = argumentos.toString();
-
-    //Map args = jsonDecode(arg);
-    //print(args);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,11 +32,6 @@ class _gameInfoState extends State<gameInfo> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          }),
     );
   }
 
@@ -171,7 +159,7 @@ class _gameInfoState extends State<gameInfo> {
     print('pedir info juego');
 
     return FutureBuilder(
-        future: infoJuego.getInfoGame(id),
+        future: infoJuegoApi.getInfoGame(id),
         initialData: [],
         builder: (context, AsyncSnapshot snap) {
           print('builder pedorDatos info games');
@@ -182,8 +170,6 @@ class _gameInfoState extends State<gameInfo> {
               children: recivirDatos(snap.data),
             ),
           );
-
-          //return ListView(children: _crearItemsCorto(snap.data, context));
         });
   }
 
