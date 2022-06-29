@@ -100,7 +100,7 @@ class _signupState extends State<signup> {
             SizedBox(
               height: height * 0.058,
             ),
-            etiquetaIzquierda("Nombre"),
+            etiquetaIzquierda("Nombre de usuario"),
             campoNombre(),
             SizedBox(
               height: height * 0.04,
@@ -148,10 +148,13 @@ class _signupState extends State<signup> {
 
   Widget campoNombre() {
     return TextFormField(
+      onChanged: (textNombre) {
+        print('Campo nombre: $textNombre');
+      },
       //style: TextStyle(fontSize: width * 0.043),
       validator: (value) {},
       decoration: InputDecoration(
-          hintText: 'Nombre completo',
+          hintText: 'Nombre de usuario',
           hintStyle: TextStyle(color: Colors.black26),
           //contentPadding: EdgeInsets.symmetric(horizontal: 10),
           border: OutlineInputBorder(
@@ -295,4 +298,16 @@ class _signupState extends State<signup> {
       ),
     );
   }
+}
+
+validarCampoNombre() {
+  return "name";
+}
+
+validarCampoEmail() {
+  return "email";
+}
+
+validarCampoPassword() {
+  return "pass";
 }

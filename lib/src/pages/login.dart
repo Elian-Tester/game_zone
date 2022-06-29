@@ -10,12 +10,17 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text("Hola logion"),
-        ],
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Holi"),
+        ),
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Hola logion"),
+            ],
+          ),
+        ));
   }
 }

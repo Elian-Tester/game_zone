@@ -7,7 +7,7 @@ import 'package:gamezone/src/pages/signup.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
-    '/': (BuildContext context) => login(),
+    '/': (BuildContext context) => signup(),
     'infoGame': (BuildContext context) => gameInfo(),
     'signup': (BuildContext context) => signup(),
     'listTemp': (BuildContext context) => listTemp()
