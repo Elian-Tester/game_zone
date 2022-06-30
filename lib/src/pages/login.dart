@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gamezone/src/model/verificarCampos.dart';
 
 class login extends StatefulWidget {
   login({Key? key}) : super(key: key);
@@ -114,9 +115,9 @@ class _loginState extends State<login> {
   Widget botonIniciarSesion() {
     return ElevatedButton(
         onPressed: () {
-          print("email: $email_global");
-          print("pass: $pass_global");
-          Navigator.pushNamed(context, "listTemp");
+          //print("email: $email_global");
+          //print("pass: $pass_global");
+          iniciarSesion(email_global, pass_global);
         },
         style: TextButton.styleFrom(
           padding: EdgeInsets.symmetric(
@@ -161,5 +162,16 @@ class _loginState extends State<login> {
         )
       ],
     );
+  }
+
+  iniciarSesion(email, password) {
+    print("validar campos");
+    verificarEmail(email);
+    verificarPassword(password);
+    print("Termina validar");
+    if (verificarEmail(email) && verificarPassword(password)) {
+      Navigator.pushNamed(context, "listTemp");
+    }
+    //Navigator.pushNamed(context, "listTemp");
   }
 }
