@@ -25,7 +25,7 @@ verificarPassword(password) {
 }
 
 verificarUserName(name) {
-  print("pass: $name");
+  print("name: $name");
   if (name.length > 4 && name.length < 15) {
     return true;
   } else {

@@ -1,20 +1,42 @@
-import 'package:gamezone/src/pages/signup.dart';
+import 'package:gamezone/src/model/verificarCampos.dart';
+
 import 'package:test/test.dart';
-import 'package:gamezone/src/pages/signup.dart';
 
 void main() {
-  test('signup nombre longitud', () {
-    expect(validarCampoNombre(), "name");
+  test('login email tipo email', () {
+    expect(verificarEmail("elian@gmail.com"), true);
   });
 
-  test('signup email tipo email', () {
-    expect(validarCampoEmail(), "email");
-  });
-  test('signup contraseña longitud', () {
-    expect(validarCampoPassword(), "pass");
+  test('login email tipo no email', () {
+    expect(verificarEmail("elian@gmail"), false);
   });
 
-  test('login contraseña mayuscula y munusculas', () {
-    expect(validarCampoPassword(), "pass");
+  //8-16, Mayus, minus y numero
+  test('login contraseña longitud >8 y <16', () {
+    expect(verificarPassword("yoNoSoy/77?"), true);
+  });
+
+  test('login contraseña longitud <8', () {
+    expect(verificarPassword("Soy/7/"), false);
+  });
+
+  test('login contraseña longitud >16', () {
+    expect(verificarPassword("SoyElBromas??//777xd"), false);
+  });
+
+  test('login contraseña sin numero', () {
+    expect(verificarPassword("meFalta?numero"), false);
+  });
+
+  test('login contraseña sin mayuscula', () {
+    expect(verificarPassword("mefalta?7??"), false);
+  });
+
+  test('login contraseña sin minuscula', () {
+    expect(verificarPassword("NO?9687452?"), false);
+  });
+
+  test('login contraseña vacio', () {
+    expect(verificarPassword(""), false);
   });
 }

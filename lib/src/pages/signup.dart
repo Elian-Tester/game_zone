@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gamezone/src/model/verificarCampos.dart';
 
 class signup extends StatefulWidget {
   signup({Key? key}) : super(key: key);
@@ -11,6 +12,9 @@ class signup extends StatefulWidget {
 class _signupState extends State<signup> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   var height, width, size;
+  String email_global = "";
+  String pass_global = "";
+  String userName_global = "";
 
   void _saveForm() {
     final bool isValid = _formKey.currentState!.validate();
@@ -150,6 +154,7 @@ class _signupState extends State<signup> {
     return TextFormField(
       onChanged: (textNombre) {
         print('Campo nombre: $textNombre');
+        userName_global = textNombre;
       },
       //style: TextStyle(fontSize: width * 0.043),
       validator: (value) {},
@@ -167,6 +172,9 @@ class _signupState extends State<signup> {
   Widget campoCorreo() {
     return TextFormField(
       //style: TextStyle(fontSize: width * 0.043),
+      onChanged: (emailText) {
+        email_global = emailText;
+      },
       validator: (value) {},
       decoration: InputDecoration(
           hintText: 'Direccion de correo',
@@ -182,6 +190,9 @@ class _signupState extends State<signup> {
   Widget campoPassword(bandera) {
     return TextFormField(
       //style: TextStyle(fontSize: width * 0.043),
+      onChanged: (passText) {
+        pass_global = passText;
+      },
       validator: (value) {},
       decoration: InputDecoration(
           suffixIcon: bandera == 1 ? Icon(Icons.remove_red_eye) : SizedBox(),
@@ -198,8 +209,9 @@ class _signupState extends State<signup> {
   Widget botonCrearCuenta() {
     return ElevatedButton(
         onPressed: () {
-          print(height);
-          print(width);
+          if (validarCampo(email_global, pass_global, userName_global)) {
+            Navigator.pushNamed(context, '/');
+          }
         },
         style: TextButton.styleFrom(
           padding: EdgeInsets.symmetric(
@@ -259,7 +271,7 @@ class _signupState extends State<signup> {
             Colors.black),
         TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'loginEmail');
+              Navigator.pushNamed(context, '/');
             },
             child: etiquetaTexto(
                 "Inicia sesión ", fontSize, FontWeight.bold, Colors.red)),
@@ -300,14 +312,15 @@ class _signupState extends State<signup> {
   }
 }
 
-validarCampoNombre() {
-  return "name";
-}
-
-validarCampoEmail() {
-  return "email";
-}
-
-validarCampoPassword() {
-  return "pass";
+validarCampo(email, password, userName) {
+  verificarEmail(email);
+  verificarPassword(password);
+  verificarUserName(userName);
+  if (verificarEmail(email) &&
+      verificarPassword(password) &&
+      verificarUserName(userName)) {
+    return true;
+  } else {
+    return false;
+  }
 }
