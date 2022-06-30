@@ -27,7 +27,7 @@ class _loginState extends State<login> {
           margin: EdgeInsets.only(
             left: 50.0,
             right: 50.0,
-            top: height * 0.25,
+            //top: height * 0.25,
           ),
           child: scrollView(),
         ));
@@ -44,10 +44,13 @@ class _loginState extends State<login> {
                   minHeight: viewportConstraints.maxHeight,
                 ),
                 child: SizedBox(
-                  height: height * 0,
+                  height: height * 0.7,
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(
+                        height: height * 0.25,
+                      ),
                       etiquetaIzquierda("Email"),
                       campoTexto(0),
                       SizedBox(
